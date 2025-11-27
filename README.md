@@ -17,13 +17,21 @@ This project utilizes a **Monte Carlo simulation**  to address a critical statis
 
 [cite_start]The analysis is based on $\mathbf{N=10,000}$ iterations [cite: 22] [cite_start]to empirically derive the sampling distribution of the Pearson correlation coefficient ($r$) under the strict null hypothesis[cite: 20, 28].
 
-| Metric | Value | Rationale |
+| Metric (指標) | Value (數值) | Rationale (理由/目的) |
 | :--- | :--- | :--- |
-| **Total Simulations (N)** | 10,000 | Robust sample size for empirically deriving the sampling distribution. |
-| **Sample Size (n)** | 50 | The number of observations used per test. |
-| **Variables** | $Y \sim \mathcal{N}(0,1)$; $X_i \sim \mathcal{N}(0,1)$ | Ensures variables are **I.I.D. (Independent and Identically Distributed)**. |
-| **Significance Threshold ($r_{\text{crit}}$)** | 0.279 ($\alpha=0.05$) | The critical value for rejecting $\mathbf{\rho=0}$ derived from the t-distribution for $\mathbf{n=50}$. |
-| **Tools** | R (Quarto, ggplot2, gt, patchwork) | Utilized for reproducible reporting, advanced statistical visualization, and professional table formatting. |
+| **I. 模擬參數 (Numerical Parameters)** | | |
+| **Total Simulations (N)** (總模擬次數) | 10,000 | [cite_start]Robust sample size for empirically deriving the sampling distribution of $r$[cite: 78, 28]. |
+| **Sample Size (n)** (每組樣本數) | 50 | [cite_start]Represents the number of observations used for each correlation test in the simulation[cite: 36, 37, 21]. |
+| **Significance Threshold ($r_{\text{crit}}$)** (臨界值) | 0.279 ($\alpha=0.05$) | [cite_start]The critical value for rejecting $\mathbf{\rho=0}$ derived from the t-distribution for $\mathbf{n=50}$[cite: 52, 54, 57]. |
+| **II. 環境與假設 (Assumptions & Tools)** | | |
+| **Variables** (變數設定) | $Y \sim \mathcal{N}(0,1)$; $X_i \sim \mathcal{N}(0,1)$ | **Fundamental Assumption:** Ensures variables are I.I.D. (Independent and Identically Distributed)[cite_start], guaranteeing zero true population correlation ($\rho=0$)[cite: 13, 22]. |
+| **Tools** (分析工具) | R (Quarto, ggplot2, gt, patchwork) | Utilized for reproducible reporting, advanced statistical visualization, and professional table formatting. |
+
+| Correlation Strength Threshold | Count (N=10,000) | Probability (%) | Interpretation |
+| :--- | :--- | :--- | :--- |
+| **$|r| > 0.5$ (Very Strong)** | **5** | **0.05%** | [cite_start]**Extremely Rare:** Represents the highest risk of false discovery[cite: 250, 314]. |
+| **$|r| > 0.4$ (Strong)** | **39** | **0.39%** | [cite_start]**Rare:** High-magnitude errors that can mislead conclusions[cite: 250, 314]. |
+| **$|r| > r_{\text{crit}}$ (Significant)** | 463 | 4.63% | [cite_start]Total Type I Error rate (close to the theoretical 5% boundary)[cite: 86, 313]. |
 
 ## 🎯 Core Findings and Quantification of Error
 
